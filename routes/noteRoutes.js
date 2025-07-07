@@ -3,9 +3,12 @@ const Router = express.Router();
 const { createNote, getNotes, updateNote, deleteNote } = require('../controllers/noteController');
 const auth = require('../middleware/auth');
 
-Router.post('/', auth, createNote);
-Router.get('/', auth, getNotes);
-Router.put('/:id', auth, updateNote);
-Router.delete('/:id', auth, deleteNote);
+// Apply auth middleware to all routes in this router
+Router.use(auth);
+
+Router.post('/', createNote);
+Router.get('/', getNotes);
+Router.put('/:id', updateNote);
+Router.delete('/:id', deleteNote);
 
 module.exports = Router;
