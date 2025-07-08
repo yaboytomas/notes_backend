@@ -58,5 +58,16 @@ exports.login = async (req, res) => {
         console.error('Error logging in user:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
+};
+
+exports.signOut = async (req, res) => {
+    try {
+        // Since JWT tokens are stateless, we just return a success message
+        // The client should remove the token from their storage
+        res.status(200).json({ message: 'Sign out successful' });
+    } catch (error) {
+        console.error('Error signing out user:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
 };  
 
